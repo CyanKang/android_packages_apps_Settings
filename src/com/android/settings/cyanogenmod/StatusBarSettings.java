@@ -37,6 +37,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String STATUS_BAR_AM_PM = "status_bar_am_pm";
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+    private static final String STATUS_BAR_NETWORK_STATS_HIDE = "status_bar_network_stats_hide";
 
     private static final String STATUS_BAR_NETWORK_STATS = "status_bar_network_stats";
     private static final String STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL = "status_bar_network_stats_update_interval";
@@ -50,6 +51,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mStatusBarBatteryShowPercent;
     private ListPreference mStatusBarNetStatsUpdate;
     private SwitchPreference mStatusBarNetworkStats;
+    private SwitchPreference mStatusBarNetworkStatsHide;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -106,6 +108,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mStatusBarNetStatsUpdate.setValue(String.valueOf(statsUpdate));
         mStatusBarNetStatsUpdate.setSummary(mStatusBarNetStatsUpdate.getEntry());
         mStatusBarNetStatsUpdate.setOnPreferenceChangeListener(this);
+
+        mStatusBarNetStatsHide = (SwitchPreference) prefSet.findPreference(STATUS_BAR_NETWORK_STATS_HIDE);
+        mStatusBarNetStatsHide.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_NETWORK_STATS_HIDE, 1) == 1));
     }
 
     @Override
@@ -160,6 +166,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     Settings.System.STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL, updateInterval);
             mStatusBarNetStatsUpdate.setSummary(mStatusBarNetStatsUpdate.getEntries()[index]);
             return true;
+        } else if (preference == mStatusBarNetworkStatsHide) {
+            value = mStatusBarNetworkStatsHide.isChecked();
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_NETWORK_STATS_HIDE, value ? 1 : 0);
         }
         return false;
     }
