@@ -19,8 +19,10 @@ import android.content.ContentResolver;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -49,9 +51,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mStatusBarAmPm;
     private ListPreference mStatusBarBattery;
     private ListPreference mStatusBarBatteryShowPercent;
+    private SwitchPreference mStatusBarNetStats;
+    private SwitchPreference mStatusBarNetStatsHide;
     private ListPreference mStatusBarNetStatsUpdate;
-    private SwitchPreference mStatusBarNetworkStats;
-    private SwitchPreference mStatusBarNetworkStatsHide;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -97,19 +99,19 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         enableStatusBarBatteryDependents(batteryStyle);
         mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
 
-        mStatusBarNetworkStats = (SwitchPreference) prefSet.findPreference(STATUS_BAR_NETWORK_STATS);
-        mStatusBarNetworkStats.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_NETWORK_STATS, 0) == 1));
+        mStatusBarNetStats = (SwitchPreference) findPreference(STATUS_BAR_NETWORK_STATS);
+        mStatusBarNetStats.setChecked((Settings.System.getInt(getContentResolver(),
+                            Settings.System.STATUS_BAR_NETWORK_STATS, 0) == 1));
 
         long statsUpdate = Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL, 500);
 
-        mStatusBarNetStatsUpdate = (ListPreference) prefSet.findPreference(STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL);
+        mStatusBarNetStatsUpdate = (ListPreference) findPreference(STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL);
         mStatusBarNetStatsUpdate.setValue(String.valueOf(statsUpdate));
         mStatusBarNetStatsUpdate.setSummary(mStatusBarNetStatsUpdate.getEntry());
         mStatusBarNetStatsUpdate.setOnPreferenceChangeListener(this);
 
-        mStatusBarNetStatsHide = (SwitchPreference) prefSet.findPreference(STATUS_BAR_NETWORK_STATS_HIDE);
+        mStatusBarNetStatsHide = (SwitchPreference) findPreference(STATUS_BAR_NETWORK_STATS_HIDE);
         mStatusBarNetStatsHide.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_NETWORK_STATS_HIDE, 1) == 1));
     }
@@ -166,20 +168,20 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     Settings.System.STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL, updateInterval);
             mStatusBarNetStatsUpdate.setSummary(mStatusBarNetStatsUpdate.getEntries()[index]);
             return true;
-        } else if (preference == mStatusBarNetworkStatsHide) {
-            value = mStatusBarNetworkStatsHide.isChecked();
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.STATUS_BAR_NETWORK_STATS_HIDE, value ? 1 : 0);
         }
         return false;
     }
 
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         boolean value;
-        if (preference == mStatusBarNetworkStats) {
-            value = mStatusBarNetworkStats.isChecked();
+        if (preference == mStatusBarNetStats) {
+            value = mStatusBarNetStats.isChecked();
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_NETWORK_STATS, value ? 1 : 0);
+        } else if (preference == mStatusBarNetStatsHide) {
+            value = mStatusBarNetStatsHide.isChecked();
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_NETWORK_STATS_HIDE, value ? 1 : 0);
         }
         return true;
     }
