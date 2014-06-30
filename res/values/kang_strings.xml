@@ -26,4 +26,7 @@
     <string name="hide_network_speed">Hide when there is no traffic</string>
     <string name="hide_network_speed_summary">Hide network speed indicator when there is no traffic</string>
 
+    <string name="navigation_bar_arrow_keys_title">Arrow keys while typing</string>
+    <string name="navigation_bar_arrow_keys_summary">Display left and right cursor buttons while typing</string>
+
 </resources>
