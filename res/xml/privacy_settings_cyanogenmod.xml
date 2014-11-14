@@ -40,4 +40,10 @@
             android:summary="@string/stats_collection_summary"
             android:defaultValue="true" />
 
+        <!-- Ad Blocker -->
+        <PreferenceScreen
+            android:key="hfm_settings"
+            android:title="@string/hfm_pref_screen_title"
+            android:fragment="com.android.settings.cyankang.hfm.HfmSettings" />
+
 </PreferenceScreen>
