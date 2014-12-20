@@ -58,6 +58,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.preference.SlimSeekBarPreference;
 import android.preference.SwitchPreference;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
@@ -92,6 +93,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOZE_CATEGORY = "category_doze_options";
     private static final String KEY_DOZE = "doze";
     private static final String KEY_DOZE_TRIGGER_MOTION = "doze_trigger_motion";
+    private static final String KEY_DOZE_TIMEOUT = "doze_timeout";
     private static final String KEY_AUTO_BRIGHTNESS = "auto_brightness";
     private static final String KEY_ADAPTIVE_BACKLIGHT = "adaptive_backlight";
     private static final String KEY_SUNLIGHT_ENHANCEMENT = "sunlight_enhancement";
@@ -121,6 +123,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private PreferenceCategory mDozeCategory;
     private SwitchPreference mDozePreference;
     private SwitchPreference mDozeTriggerMotion;
+    private SlimSeekBarPreference mDozeTimeout;
     private SwitchPreference mAutoBrightnessPreference;
     private SwitchPreference mTapToWake;
     private SwitchPreference mWakeWhenPluggedOrUnplugged;
@@ -234,6 +237,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mDozeCategory = (PreferenceCategory) findPreference(KEY_DOZE_CATEGORY);
         if (isDozeAvailable(activity)) {
+            // Doze master switch
             mDozePreference = (SwitchPreference) findPreference(KEY_DOZE);
             mDozePreference.setOnPreferenceChangeListener(this);
 
@@ -244,6 +248,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             } else {
                 removePreference(KEY_DOZE_TRIGGER_MOTION);
             }
+
+            // Doze timeout seekbar
+            mDozeTimeout = (SlimSeekBarPreference) findPreference(KEY_DOZE_TIMEOUT);
+            mDozeTimeout.setDefault(3000);
+            mDozeTimeout.isMilliseconds(true);
+            mDozeTimeout.setInterval(1);
+            mDozeTimeout.minimumValue(100);
+            mDozeTimeout.multiplyValue(100);
+            mDozeTimeout.setOnPreferenceChangeListener(this);
         } else {
             prefSet.removePreference(mDozeCategory);
         }
@@ -532,6 +545,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     Settings.System.DOZE_TRIGGER_MOTION, 1);
             mDozeTriggerMotion.setChecked(value != 0);
         }
+
+        // Update doze timeout value
+        if (mDozeTimeout != null) {
+            final int statusDozeTimeout = Settings.System.getInt(getContentResolver(),
+                    Settings.System.DOZE_TIMEOUT, 3000);
+            // minimum 100 is 1 interval of the 100 multiplier
+            mDozeTimeout.setInitValue((statusDozeTimeout / 100) - 1);
+        }
     }
 
     private void updateScreenSaverSummary() {
@@ -654,6 +675,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DOZE_TRIGGER_MOTION, value ? 1 : 0);
+        }
+        if (preference == mDozeTimeout) {
+            int dozeTimeout = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.DOZE_TIMEOUT, dozeTimeout);
         }
         return true;
     }
