@@ -181,8 +181,13 @@ public class SoundSettings extends SettingsPreferenceFragment implements Indexab
 
         mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
         int notificationThreshold = Settings.System.getInt(getContentResolver(),
-                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
-                0);
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, 0);
+        updateAnnoyingNotificationValues();
+    }
+
+    private void updateAnnoyingNotificationValues() {
+        int notificationThreshold = Settings.System.getInt(getContentResolver(),
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, 0);
         if (mAnnoyingNotifications == null) {
             mAnnoyingNotifications.setSummary(getString(R.string.less_notification_sounds_summary));
         } else {
@@ -665,6 +670,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements Indexab
             final int val = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+            updateAnnoyingNotificationValues();
         }
         return true;
     }
