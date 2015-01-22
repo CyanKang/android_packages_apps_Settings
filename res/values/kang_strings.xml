@@ -84,4 +84,7 @@
     <string name="set">Set</string>
     <string name="color_default">Default</string>
 
+    <string name="qs_battery_saver_tile">Battery saver</string>
+    <string name="qs_screen_off_tile">Screen off</string>
+
 </resources>
