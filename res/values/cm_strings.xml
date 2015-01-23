@@ -640,7 +640,7 @@
     <string name="profile_menu_triggers_title">Modify triggers</string>
 
     <string name="profile_action_none">No action</string>
-    <string name="profile_action_disabled">Disable</string>
+    <string name="profile_action_disable">Disable</string>
     <string name="profile_action_enable">Enable</string>
 
     <string name="profile_trigger_a2dp_connect">On A2DP connect</string>
@@ -1068,5 +1068,9 @@
     <string name="navring_action_torch">Toggle torch</string>
     <string name="navring_action_google_now">Google Now</string>
     <string name="navring_choose_action_title">Choose action</string>
+
+    <string name="screen_color_setting_standard">Standard</string>
+    <string name="screen_color_setting_vivid">Vivid</string>
+    <string name="screen_color_setting_custom">Custom</string>
 
 </resources>
