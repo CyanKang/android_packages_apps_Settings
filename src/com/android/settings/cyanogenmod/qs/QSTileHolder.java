@@ -124,6 +124,9 @@ public class QSTileHolder {
             case QSConstants.TILE_LOCKSCREEN:
                 resourceName = "ic_qs_lock_screen_on";
                 stringId = R.string.qs_title_lockscreen;
+            case QSConstants.TILE_SCREEN_TIMEOUT:
+                resourceName = "ic_qs_screen_timeout_vector";
+                stringId = R.string.ic_screen_timeout_qs;
                 break;
             case QSConstants.TILE_LTE:
                 resourceName = "ic_qs_lte_on";
