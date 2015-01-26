@@ -101,6 +101,10 @@ public class QSTileHolder {
                 resourceName = "ic_qs_hotspot_on";
                 stringId = R.string.hotspot;
                 break;
+            case QSConstants.TILE_NOTIFICATIONS:
+                resourceName = "ic_qs_ringer_audible";
+                stringId = R.string.qs_title_notifications;
+                break;
             case QSConstants.TILE_ADB_NETWORK:
                 resourceName = "ic_qs_network_adb_on";
                 stringId = R.string.adb_over_network;
@@ -124,6 +128,7 @@ public class QSTileHolder {
             case QSConstants.TILE_LOCKSCREEN:
                 resourceName = "ic_qs_lock_screen_on";
                 stringId = R.string.qs_title_lockscreen;
+                break;
             case QSConstants.TILE_SCREEN_TIMEOUT:
                 resourceName = "ic_qs_screen_timeout_vector";
                 stringId = R.string.ic_screen_timeout_qs;
