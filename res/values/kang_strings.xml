@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="attention">Attention</string>
+
     <!-- Network traffic -->
     <string name="network_traffic_title">Network traffic</string>
     <string name="show_network_traffic_state">Status bar traffic monitor</string>
