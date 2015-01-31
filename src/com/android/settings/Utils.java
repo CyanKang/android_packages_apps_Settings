@@ -1242,5 +1242,4 @@ public final class Utils {
         }
         activity.setRequestedOrientation(frozenRotation);
     }
-
 }
