@@ -90,10 +90,10 @@
                     android:summary="@string/doze_summary"
                     android:persistent="false" />
 
-                <SlimSeekBarPreference
-                    android:key="doze_timeout"
-                    android:title="@string/doze_timeout_title"
-                    android:summary="@string/doze_timeout_summary"
+                <PreferenceScreen
+                    android:fragment="com.android.settings.cyankang.fragments.DozeSettingsFragment"
+                    android:key="advanced_doze_options"
+                    android:title="@string/doze_settings_title"
                     android:dependency="doze" />
 
         </PreferenceCategory>
