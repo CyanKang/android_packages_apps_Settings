@@ -46,4 +46,12 @@
             android:title="@string/hfm_pref_screen_title"
             android:fragment="com.android.settings.cyankang.hfm.HfmSettings" />
 
+        <Preference
+            android:key="whisperpush"
+            android:title="@string/whisperpush_title"
+            android:summary="@string/whisperpush_summary">
+            <intent android:targetPackage="org.whispersystems.whisperpush"
+                    android:targetClass="org.whispersystems.whisperpush.ui.PreferenceActivity" />
+        </Preference>
+
 </PreferenceScreen>
