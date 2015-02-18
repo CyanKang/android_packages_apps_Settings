@@ -102,18 +102,12 @@
                 android:title="@string/other_sound_settings"
                 android:persistent="false"
                 android:fragment="com.android.settings.notification.OtherSoundSettings" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
             android:key="vibrate"
             android:title="@string/category_vibrate">
-
-<<<<<<< HEAD:res/xml/notification_settings.xml
-        <!-- Battery light -->
-        <PreferenceScreen
-                android:key="battery_light"
-                android:title="@string/battery_light_title"
-                android:fragment="com.android.settings.notificationlight.BatteryLightSettings" />
 
         <!-- When device is locked -->
         <com.android.settings.notification.DropDownPreference
@@ -130,12 +124,6 @@
                 android:entryValues="@array/less_notification_sounds_values"
                 android:persistent="false" />
 
-        <!-- App notifications -->
-        <PreferenceScreen
-                android:key="app_notifications"
-                android:title="@string/app_notifications_title"
-                android:fragment="com.android.settings.notification.NotificationAppList" />
-=======
         <!-- Also vibrate for calls -->
         <SwitchPreference
                 android:key="vibrate_when_ringing"
@@ -149,7 +137,6 @@
                 android:switchTextOff=""
                 android:switchTextOn=""
                 android:persistent="false" />
->>>>>>> FETCH_HEAD:res/xml/sounds.xml
 
         <!-- CMHW vibration intensity -->
         <com.android.settings.hardware.VibratorIntensity
