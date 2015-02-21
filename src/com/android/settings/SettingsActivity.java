@@ -23,6 +23,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -230,6 +231,7 @@ public class SettingsActivity extends Activity
             R.id.display_and_lights_settings,
             R.id.lockscreen_settings,
             R.id.notification_manager,
+            R.id.button_settings,
             R.id.storage_settings,
             R.id.application_settings,
             R.id.battery_settings,
@@ -244,8 +246,8 @@ public class SettingsActivity extends Activity
             R.id.about_settings,
             R.id.accessibility_settings,
             R.id.print_settings,
-            R.id.nfc_payment_settings,
             R.id.home_settings,
+            R.id.status_bar_settings,
             R.id.dashboard,
             R.id.privacy_settings_cyanogenmod
     };
@@ -1177,7 +1179,9 @@ public class SettingsActivity extends Activity
                         removeTile = true;
                     }
                 } else if (id == R.id.mobile_networks) {
-                    if (TelephonyManager.getDefault().getPhoneCount() > 1) {
+                    if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+                        removeTile = true;
+                    } else if (TelephonyManager.getDefault().getPhoneCount() > 1) {
                         removeTile = true;
                     }
                 } else if (id == R.id.msim_mobile_networks) {
@@ -1214,18 +1218,6 @@ public class SettingsActivity extends Activity
                                     && !hasMultipleUsers)
                             || Utils.isMonkeyRunning()) {
                         removeTile = true;
-                    }
-                } else if (id == R.id.nfc_payment_settings) {
-                    if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC)) {
-                        removeTile = true;
-                    } else {
-                        // Only show if NFC is on and we have the HCE feature
-                        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
-                        if (adapter == null || !adapter.isEnabled() ||
-                                !getPackageManager().hasSystemFeature(
-                                        PackageManager.FEATURE_NFC_HOST_CARD_EMULATION)) {
-                            removeTile = true;
-                        }
                     }
                 } else if (id == R.id.print_settings) {
                     boolean hasPrintingSupport = getPackageManager().hasSystemFeature(
@@ -1425,11 +1417,9 @@ public class SettingsActivity extends Activity
     }
 
     public static boolean showAdvancedPreferences(Context context) {
-        boolean defValue = context.getResources().getBoolean(
-                R.bool.config_default_advanced_mode_enabled) || !Build.TYPE.equals("user");
-
-        return context.getSharedPreferences(DeviceInfoSettings.PREFS_FILE, 0)
-                .getBoolean(DeviceInfoSettings.KEY_ADVANCED_MODE, defValue);
+        return android.provider.Settings.Secure.getInt(
+                context.getContentResolver(),
+                android.provider.Settings.Secure.ADVANCED_MODE, 1) == 1;
     }
 
 
