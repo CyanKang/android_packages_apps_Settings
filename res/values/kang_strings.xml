@@ -78,6 +78,7 @@
 
     <string name="qs_battery_saver_tile">Battery saver</string>
     <string name="qs_screen_off_tile">Screen off</string>
+    <string name="qs_ambient_display_tile">Ambient display</string>
 
     <!-- Less Notification sounds -->
     <string name="notifications_category_title">Notifications</string>
