@@ -79,6 +79,7 @@ import com.android.settings.applications.ProcessStatsUi;
 import com.android.settings.blacklist.BlacklistSettings;
 import com.android.settings.bluetooth.BluetoothSettings;
 import com.android.settings.cyanogenmod.qs.QSTiles;
+import com.android.settings.cyanogenmod.DisplayRotation;
 import com.android.settings.dashboard.DashboardCategory;
 import com.android.settings.dashboard.DashboardSummary;
 import com.android.settings.dashboard.DashboardTile;
@@ -319,7 +320,8 @@ public class SettingsActivity extends Activity
             QSTiles.class.getName(),
             NotificationManagerSettings.class.getName(),
             LockScreenSettings.class.getName(),
-            LiveDisplay.class.getName()
+            LiveDisplay.class.getName(),
+            DisplayRotation.class.getName()
     };
 
 
@@ -1087,6 +1089,11 @@ public class SettingsActivity extends Activity
                                     com.android.internal.R.styleable.PreferenceHeader_fragment);
                             sa.recycle();
 
+                            sa = obtainStyledAttributes(attrs, R.styleable.DashboardTile);
+                            tile.switchControl = sa.getString(
+                                    R.styleable.DashboardTile_switchClass);
+                            sa.recycle();
+
                             if (curBundle == null) {
                                 curBundle = new Bundle();
                             }
@@ -1413,11 +1420,15 @@ public class SettingsActivity extends Activity
         super.onNewIntent(intent);
     }
 
+    /**
+     * Showing "advanced options" on a retail build involves a toggle,
+     * however, it should always show all advanced options if the option is enabled
+     * by default in an overlay.
+     */
     public static boolean showAdvancedPreferences(Context context) {
-        return android.provider.Settings.Secure.getInt(
-                context.getContentResolver(),
-                android.provider.Settings.Secure.ADVANCED_MODE, 1) == 1;
+        return (android.provider.Settings.Secure.getInt(context.getContentResolver(),
+                android.provider.Settings.Secure.ADVANCED_MODE, 1) == 1)
+                && context.getResources().getBoolean(
+                com.android.internal.R.bool.config_advancedSettingsMode);
     }
-
-
 }
