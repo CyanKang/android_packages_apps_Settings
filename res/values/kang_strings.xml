@@ -19,4 +19,11 @@
     <string name="network_traffic_autohide">Auto hide</string>
     <string name="network_traffic_autohide_summary">Hide the traffic monitor when there is no activity</string>
     <string name="network_traffic_autohide_threshold">Inactivity threshold</string>
+
+    <!-- Doze -->
+    <string name="doze_brightness_category_title">Brightness</string>
+    <string name="doze_brightness_title">Brightness level</string>
+    <string name="doze_auto_brightness_title">Auto brightness</string>
+    <string name="doze_auto_brightness_summary">Adjusts the brightness of the screen to take into account the ambient light of your surroundings</string>
+
 </resources>
