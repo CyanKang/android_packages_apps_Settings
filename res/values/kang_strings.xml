@@ -89,6 +89,7 @@
 
     <string name="reset_default_message">Reset default</string>
     <string name="shortcut_action_theme_switch">Theme switcher</string>
+    <string name="qs_tile_ambient_display">Ambient display</string>
 
   <!-- Slim Shortcuts -->
   <string name="slim_shortcut_picker">Slim Actions</string>
