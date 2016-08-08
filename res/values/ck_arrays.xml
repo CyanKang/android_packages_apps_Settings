@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 - 2016 CyanKang -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- NFC settings. -->
+    <string-array name="nfc_polling_mode_entries">
+       <item>@string/nfc_polling_mode_screen_off</item>
+       <item>@string/nfc_polling_mode_screen_locked</item>
+       <item>@string/nfc_polling_mode_screen_unlocked</item>
+    </string-array>
+
+    <string-array name="nfc_polling_mode_values">
+       <item>1</item>
+       <item>2</item>
+       <item>3</item>
+    </string-array>
+
+</resources>
+
