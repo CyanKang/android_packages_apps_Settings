@@ -59,8 +59,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class WirelessSettings extends SettingsPreferenceFragment implements Indexable
-        implements Preference.OnPreferenceChangeListener {
+public class WirelessSettings extends SettingsPreferenceFragment implements Indexable,
+        Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "WirelessSettings";
 
