@@ -5,7 +5,7 @@
     <!-- About phone screen, Temasek version -->
     <string name="temasek_version_title">Temasek unofficial version</string>
     <!-- Do NOT translate this -->
-    <string name="temasek_version_default">Build V10.7</string>
+    <string name="temasek_version_default">Build V10.8</string>
     <string name="android_version_title">Marshmallow</string>
     <string name="android_version_default">6.0.1 MOB30Z Release 61</string>
 
@@ -1267,4 +1267,7 @@
     <string name="toggle_package_install_overlay_check_title">Disable permission overlay check</string>
     <string name="toggle_package_install_overlay_check_summary">WARNING\u003A this disables a security check to prevent possible tapjacking! Use only if you understand the consequences.</string>
 
+    <!-- Vendor version -->
+    <string name="vendor_version">Vendor version</string>
+    <string name="vendor_version_default">Unknown</string>
 </resources>
