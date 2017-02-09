@@ -2037,8 +2037,18 @@
 
         <activity
             android:name=".cyankang.SubActivity"
-            android:theme="@style/PreferenceTheme">
+            android:theme="@style/PreferenceTheme"
             android:label="@string/recent_panel_category">
+        </activity>
+        <activity
+            android:name=".cyankang.SlimRecentAppSidebarActivity"
+            android:theme="@style/PreferenceTheme"
+            android:label="@string/recent_app_sidebar_title">
+        </activity>
+        <activity
+            android:name=".cyankang.RecentAppSidebarFragment"
+            android:theme="@style/PreferenceTheme"
+            android:label="@string/recent_app_sidebar_title">
         </activity>
 
         <activity android:name="Settings$PrintSettingsActivity"

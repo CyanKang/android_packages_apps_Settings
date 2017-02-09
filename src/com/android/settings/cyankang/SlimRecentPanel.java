@@ -68,6 +68,8 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
             "recent_card_bg_color";
     private static final String RECENT_CARD_TEXT_COLOR =
             "recent_card_text_color";
+    private static final String APP_SIDEBAR_CONTENT =
+            "recent_app_sidebar_content";
 
     private CustomSeekBarPreference mMaxApps;
     private SwitchPreference mRecentPanelLeftyMode;
@@ -76,6 +78,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
     private ColorPickerPreference mRecentPanelBgColor;
     private ColorPickerPreference mRecentCardBgColor;
     private ColorPickerPreference mRecentCardTextColor;
+    private Preference mAppSidebarContent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -209,6 +212,18 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
 
         mRecentPanelExpandedMode = (ListPreference) findPreference(RECENT_PANEL_EXPANDED_MODE);
         mRecentPanelExpandedMode.setOnPreferenceChangeListener(this);
+
+        mAppSidebarContent = findPreference(APP_SIDEBAR_CONTENT);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference == mAppSidebarContent) {
+            Intent intent = new Intent(getActivity(), SlimRecentAppSidebarActivity.class);
+            getActivity().startActivity(intent);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 /*
     @Override
