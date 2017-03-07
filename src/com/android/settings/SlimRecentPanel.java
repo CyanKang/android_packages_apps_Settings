@@ -25,6 +25,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
@@ -36,7 +37,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuInflater;
 
-import com.android.settings.cyankang.SystemSettingSwitchPreference;
 import com.android.settings.cyankang.CustomSeekBarPreference;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.settings.R;
@@ -68,7 +68,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
     private static final int DIALOG_RESET_CONFIRM = 1;
 
     private CustomSeekBarPreference mMaxApps;
-    private SystemSettingSwitchPreference mRecentPanelLeftyMode;
+    private SwitchPreference mRecentPanelLeftyMode;
     private CustomSeekBarPreference mRecentPanelScale;
     private ListPreference mRecentPanelExpandedMode;
     private ColorPickerPreference mRecentPanelBgColor;
@@ -82,7 +82,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
         initializeAllPreferences();
 
         if (screenPinningEnabled()) {
-            SystemSettingSwitchPreference pref = (SystemSettingSwitchPreference) findPreference("recent_panel_show_topmost");
+            SwitchPreference pref = (SwitchPreference) findPreference("recent_panel_show_topmost");
             pref.setChecked(true);
             pref.setEnabled(false);
         }
@@ -112,7 +112,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, MENU_RESET, 0, R.string.reset)
+        menu.add(0, MENU_RESET, 0, "Reset")
                 .setIcon(com.android.internal.R.drawable.ic_menu_refresh)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
@@ -132,7 +132,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
         Settings.System.putInt(getContext().getContentResolver(),
                 Settings.System.RECENT_PANEL_BG_COLOR,
                 0x763367d6);
-        mRecentPanelBgColor.setSummary(R.string.default_string);
+        mRecentPanelBgColor.setSummary("");
         mRecentPanelBgColor.setNewPreviewColor(0x763367d6);
     }
 
@@ -154,11 +154,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
         } else if (preference == mRecentPanelBgColor) {
             String hex = ColorPickerPreference.convertToARGB(
                     Integer.valueOf(String.valueOf(newValue)));
-            if (hex.equals("#763367d6")) {
-                preference.setSummary(R.string.default_string);
-            } else {
-                preference.setSummary(hex);
-            }
+            preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getContext().getContentResolver(),
                     Settings.System.RECENT_PANEL_BG_COLOR,
@@ -229,7 +225,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
 
     private void initializeAllPreferences() {
         mRecentPanelLeftyMode =
-                (SystemSettingSwitchPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
+                (SwitchPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
         mRecentPanelLeftyMode.setOnPreferenceChangeListener(this);
 
         mMaxApps = (CustomSeekBarPreference) findPreference(RECENTS_MAX_APPS);
@@ -242,11 +238,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
         final int intColor = Settings.System.getInt(getContext().getContentResolver(),
                 Settings.System.RECENT_PANEL_BG_COLOR, 0x763367d6);
         String hexColor = String.format("#%08x", (0x00ffffff & intColor));
-        if (hexColor.equals("#763367d6")) {
-            mRecentPanelBgColor.setSummary(R.string.default_string);
-        } else {
-            mRecentPanelBgColor.setSummary(hexColor);
-        }
+        mRecentPanelBgColor.setSummary(hexColor);
         mRecentPanelBgColor.setNewPreviewColor(intColor);
 
         // Recent card background color
@@ -288,6 +280,7 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
 
     @Override
     protected int getMetricsCategory() {
-        return MetricsEvent.ABC;
+        return MetricsEvent.DISPLAY;
     }
+
 }
