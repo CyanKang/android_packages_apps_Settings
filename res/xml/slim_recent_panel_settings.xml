@@ -20,7 +20,7 @@
             android:title="@string/show_running_tasks_title"
             android:defaultValue="false" />
 
-        <SeekBarPreference
+        <com.android.settings.cyankang.CustomSeekBarPreference
             android:key="recents_max_apps"
             android:title="@string/recents_max_apps_title"
             settings:min="5"
@@ -46,7 +46,7 @@
             android:summary="@string/recent_panel_show_topmost_summary"
             android:defaultValue="false" />
 
-        <SeekBarPreference
+        <com.android.settings.cyankang.CustomSeekBarPreference
             android:key="recent_panel_scale"
             android:title="@string/recent_panel_scale_title"
             settings:min="60"

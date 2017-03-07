@@ -29,8 +29,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 
-import com.abc.settings.preferences.SystemSettingSwitchPreference;
-import com.abc.settings.preferences.CustomSeekBarPreference;
+import com.android.settings.cyankang.SystemSettingSwitchPreference;
+import com.android.settings.cyankang.CustomSeekBarPreference;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
