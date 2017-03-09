@@ -69,6 +69,7 @@ import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v7.preference.Preference.OnPreferenceClickListener;
 import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.PreferenceCategory;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -379,6 +380,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        PreferenceScreen prefSet = getPreferenceScreen();
+
         mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
         mBackupManager = IBackupManager.Stub.asInterface(
                 ServiceManager.getService(Context.BACKUP_SERVICE));
@@ -594,10 +597,9 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mAllPrefs.add(mDevelopmentTools);
 
         mSlimRecents = (PreferenceCategory) findPreference(CATEGORY_SLIM_RECENTS);
-        mRecentsUseSlim = (SwitchPreference) prefSet.findPreference(RECENTS_USE_SLIM);
+        mRecentsUseSlim = (SwitchPreference) findPreference(RECENTS_USE_SLIM);
         mRecentsUseSlim.setOnPreferenceChangeListener(this);
-        mSlimRecentsSettings = (Preference) prefSet.findPreference(SLIM_RECENTS_SETTINGS);
-        updateRecents();
+        mSlimRecentsSettings = (Preference) findPreference(SLIM_RECENTS_SETTINGS);
     }
 
     private ListPreference addListPreference(String prefKey) {
@@ -2302,10 +2304,10 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 }
                 mUpdateRecoveryDialog.setOnDismissListener(this);
             }
-        } else if (preference == mSlimRecentsSettings) {
-            Intent intent = new Intent(getActivity(), SlimRecents.class);
-            getActivity().startActivity(intent);
-            return true;
+//        } else if (preference == mSlimRecentsSettings) {
+//            Intent intent = new Intent(getActivity(), SlimRecentsPanel.class);
+//            getActivity().startActivity(intent);
+//            return true;
         } else {
             return super.onPreferenceTreeClick(preference);
         }
@@ -2408,9 +2410,9 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             return true;
         } else if (preference == mRecentsUseSlim) {
             boolean value = (Boolean) newValue;
-            Settings.System.putInt(
-                    resolver, Settings.System.USE_SLIM_RECENTS, value ? 1 : 0);
-            updateRecents();
+            final ContentResolver cr = getActivity().getContentResolver();
+            Settings.System.putInt( getContext().getContentResolver(),
+                    Settings.System.USE_SLIM_RECENTS, value ? 1 : 0);
             return true;
         }
         return false;
@@ -2695,13 +2697,5 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         UserHandle userHandle = UserHandle.of(UserHandle.myUserId());
         return !(mUm.hasBaseUserRestriction(UserManager.DISALLOW_OEM_UNLOCK, userHandle)
                 || mUm.hasBaseUserRestriction(UserManager.DISALLOW_FACTORY_RESET, userHandle));
-    }
-
-    private void updateRecents() {
-        boolean slimRecents = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.USE_SLIM_RECENTS, 1) == 1;
-
-        mStockRecents.setEnabled(!slimRecents);
-        mSlimRecents.setEnabled(slimRecents);
     }
 }

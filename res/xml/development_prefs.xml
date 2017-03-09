@@ -22,7 +22,7 @@
         android:key="slim_recents"
         android:title="@string/slim_recents_title">
 
-        <com.android.settings.cyankang.SystemSettingSwitchPreference
+        <SwitchPreference
             android:key="use_slim_recents"
             android:title="@string/use_slim_recents_title"
             android:summary="@string/use_slim_recents_summary"

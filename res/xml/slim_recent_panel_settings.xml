@@ -15,7 +15,7 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings.cyankang"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
         android:title="@string/slim_recents_title">
 
         <!--
@@ -25,7 +25,7 @@
             android:defaultValue="true" />
         -->
 
-        <com.android.settings.cyankang.SystemSettingSwitchPreference
+        <SwitchPreference
             android:key="show_running_tasks"
             android:title="@string/show_running_tasks_title"
             android:defaultValue="false" />
@@ -44,13 +44,13 @@
             android:title="@string/recent_panel_expanded_mode_title"
             android:summary="@string/recent_panel_expanded_mode_summary" />
 
-        <com.android.settings.cyankang.SystemSettingSwitchPreference
+        <SwitchPreference
             android:key="recent_panel_lefty_mode"
             android:title="@string/recent_panel_lefty_mode_title"
             android:summary="@string/recent_panel_lefty_mode_summary"
             android:defaultValue="false" />
 
-        <com.android.settings.cyankang.SystemSettingSwitchPreference
+        <SwitchPreference
             android:key="recent_panel_show_topmost"
             android:title="@string/recent_panel_show_topmost_title"
             android:summary="@string/recent_panel_show_topmost_summary"
