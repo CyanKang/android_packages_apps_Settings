@@ -21,6 +21,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,7 +45,6 @@ import android.view.MenuInflater;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.cyankang.CustomSeekBarPreference;
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
@@ -210,7 +210,12 @@ public class SlimRecentPanel extends SettingsPreferenceFragment implements
         mRecentPanelExpandedMode = (ListPreference) findPreference(RECENT_PANEL_EXPANDED_MODE);
         mRecentPanelExpandedMode.setOnPreferenceChangeListener(this);
     }
-
+/*
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        return super.onPreferenceTreeClick(preference);
+    }
+*/
     @Override
     protected int getMetricsCategory() {
         return MetricsEvent.DISPLAY;

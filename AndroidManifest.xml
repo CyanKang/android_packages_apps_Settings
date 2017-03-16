@@ -2041,6 +2041,12 @@
                 android:value="true" />
         </activity>
 
+        <activity
+            android:name=".cyankang.SubActivity"
+            android:theme="@style/PreferenceTheme">
+            android:label="@string/recent_panel_category">
+        </activity>
+
         <activity android:name="Settings$PrintSettingsActivity"
                 android:label="@string/print_settings"
                 android:icon="@drawable/ic_settings_print"

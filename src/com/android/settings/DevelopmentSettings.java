@@ -62,6 +62,7 @@ import android.os.storage.IMountService;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.service.persistentdata.PersistentDataBlockManager;
+import android.support.v14.preference.PreferenceFragment;
 import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -100,10 +101,15 @@ import cyanogenmod.providers.CMSettings;
 
 import org.cyanogenmod.internal.util.FileUtils;
 
+import com.android.settings.cyankang.SubActivity;
+import com.android.settings.cyankang.SlimRecentPanel;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+
+import com.android.settings.R;
 
 /*
  * Displays preferences for application developers.
@@ -2304,10 +2310,13 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 }
                 mUpdateRecoveryDialog.setOnDismissListener(this);
             }
-//        } else if (preference == mSlimRecentsSettings) {
-//            Intent intent = new Intent(getActivity(), SlimRecentsPanel.class);
-//            getActivity().startActivity(intent);
-//            return true;
+        } else if (preference == mSlimRecentsSettings) {
+            Intent intent = new Intent(getActivity(), SubActivity.class);
+            intent.putExtra(SubActivity.EXTRA_FRAGMENT_CLASS, SlimRecentPanel.class.getName());
+            intent.putExtra(SubActivity.EXTRA_TITLE,
+                    getResources().getString(R.string.recent_panel_category));
+            getActivity().startActivity(intent);
+            return true;
         } else {
             return super.onPreferenceTreeClick(preference);
         }
