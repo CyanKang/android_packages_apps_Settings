@@ -275,7 +275,7 @@
   <string name="lockscreen_blur_enabled_title">Bulanık arkaplan</string>
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Yanlış uyandırmaları önle</string>
-  <string name="proximity_wake_summary">Jestler tarafından tetiklenen uyanmadan önce yakınlık sensörünü kontrol edin</string>
+  <string name="proximity_wake_summary">Hareketlerin tetiklediği uyanmadan önce yakınlık sensörünü kontrol edin</string>
   <!-- High touch sensitivity -->
   <string name="high_touch_sensitivity_title">Yüksek dokunma hassasiyeti</string>
   <string name="high_touch_sensitivity_summary">Dokunmatik ekran hassasiyetini arttırarak eldiven ile kullanıma olanak verir</string>
@@ -314,6 +314,18 @@
   <string name="zen_mode_vibration_never">Titreşim yok</string>
   <string name="zen_mode_vibration_calls_only">Sadece çağrılarda titret</string>
   <string name="zen_mode_vibration_calls_and_notifications">Arama ve bildirimlerde titret</string>
+  <!-- Zen mode allowed event setting summary items -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_reminders, but part of a list, so lower case if needed-->
+  <string name="zen_mode_summary_reminders">hatırlatıcılar</string>
+  <!-- [CHAR LIMIT=50] Like zen_mode_events, but part of a list, so lower case if needed -->
+  <string name="zen_mode_summary_events">etkinlikler</string>
+  <!-- [CHAR LIMIT=50] Like zen_mode_all_callers, but part of a list, so lower case if needed -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_selected_callers, but part of a list, so lower case if needed -->
+  <string name="zen_mode_summary_selected_callers">seçili arayanlar</string>
+  <!-- [CHAR LIMIT=50] Like zen_mode_repeat_callers, but part of a list, so lower case if needed -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_all_messages, but part of a list, so lower case if needed -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_selected_messages, but part of a list, so lower case if needed -->
+  <string name="zen_mode_summary_selected_messages">seçili mesajlar</string>
   <!-- Notification sound timeout -->
   <string name="app_notification_sound_timeout_title">Bildirim sesleri arasında en az zaman</string>
   <string name="app_notification_sound_timeout_summary_template">Bir defadan fazla olmayacak şekilde her <xliff:g id="duration">%1$s</xliff:g>\'da bir titreme veya sese izin ver</string>
@@ -396,6 +408,7 @@
   <string name="status_bar_double_tap_to_sleep_title">Uykuya geçmek için iki kez dokun</string>
   <string name="status_bar_double_tap_to_sleep_summary">Ekranı kapatmak için durum çubuğuna iki defa dokunun</string>
   <string name="sim_enabler_summary"><xliff:g id="displayName">%1$s</xliff:g> <xliff:g id="status" example="disabled">%2$s</xliff:g></string>
+  <string name="sim_enabled">etkin</string>
   <string name="sim_disabled">devre dışı bırakıldı</string>
   <string name="sim_missing">yok ya da sorunlu</string>
   <string name="sim_enabler_need_disable_sim">SIM kart devre dışı bırakılacak. Devam etmek istiyor musunuz?</string>

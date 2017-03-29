@@ -314,6 +314,18 @@
   <string name="zen_mode_vibration_never">Ikke vibrer</string>
   <string name="zen_mode_vibration_calls_only">Vibrer bare ved innkommende anrop</string>
   <string name="zen_mode_vibration_calls_and_notifications">Vibrer når innkommende anrop eller varsler</string>
+  <!-- Zen mode allowed event setting summary items -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_reminders, but part of a list, so lower case if needed-->
+  <string name="zen_mode_summary_reminders">påminnelser</string>
+  <!-- [CHAR LIMIT=50] Like zen_mode_events, but part of a list, so lower case if needed -->
+  <string name="zen_mode_summary_events">hendelser</string>
+  <!-- [CHAR LIMIT=50] Like zen_mode_all_callers, but part of a list, so lower case if needed -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_selected_callers, but part of a list, so lower case if needed -->
+  <string name="zen_mode_summary_selected_callers">valgte oppringere</string>
+  <!-- [CHAR LIMIT=50] Like zen_mode_repeat_callers, but part of a list, so lower case if needed -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_all_messages, but part of a list, so lower case if needed -->
+  <!-- [CHAR LIMIT=50] Like zen_mode_selected_messages, but part of a list, so lower case if needed -->
+  <string name="zen_mode_summary_selected_messages">valgte meldinger</string>
   <!-- Notification sound timeout -->
   <string name="app_notification_sound_timeout_title">Minimum tid imellom varsellyder</string>
   <string name="app_notification_sound_timeout_summary_template">Gi lyder og vibrasjoner bare lov å ringe hvert <xliff:g id="duration">%1$s</xliff:g></string>
@@ -396,6 +408,7 @@
   <string name="status_bar_double_tap_to_sleep_title">Dobbeltapp for å sove</string>
   <string name="status_bar_double_tap_to_sleep_summary">Dobbelttapp på statuslinjen for å slå av skjermen</string>
   <string name="sim_enabler_summary"><xliff:g id="displayName">%1$s</xliff:g> er <xliff:g id="status" example="disabled">%2$s</xliff:g></string>
+  <string name="sim_enabled">aktivert</string>
   <string name="sim_disabled">deaktivert</string>
   <string name="sim_missing">manglende eller feil</string>
   <string name="sim_enabler_need_disable_sim">SIM-kortet vil bli deaktivert. Vil du fortsette?</string>
